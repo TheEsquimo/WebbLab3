@@ -1,0 +1,49 @@
+﻿@page
+@model WebbLab3.AvailableMoviesModel
+
+@{
+    ViewData["Title"] = "AvailableMovies";
+}
+
+<h1>AvailableMovies</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].SeatsLeft)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Salon)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Movie) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatsLeft)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salon)
+            </td>
+            <td>
+                <a asp-page="./PurchaseTicket" asp-route-id="@item.ID">Purchase Tickets</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

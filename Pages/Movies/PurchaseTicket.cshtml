@@ -1,0 +1,68 @@
+﻿@page
+@model WebbLab3.PurchaseTicketModel
+
+@{
+    ViewData["Title"] = "PurchaseTicket";
+}
+
+<h1>PurchaseTicket</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Movie.ID" />
+            <div class="form-group">
+                <label asp-for="Movie.Title" class="control-label"></label>
+                <input asp-for="Movie.Title" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Movie.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.StartTime" class="control-label"></label>
+                <input asp-for="Movie.StartTime" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Movie.StartTime" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Movie.SeatsLeft" class="control-label"></label>
+                <input asp-for="Movie.SeatsLeft" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Movie.SeatsLeft" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Movie.Salon" class="control-label"></label>
+                <input asp-for="Movie.Salon" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Movie.Salon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.SeatsLeft" class="control-label">Ticket Amount</label>
+                <select asp-for="Movie.SeatsLeft" class="form-control">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+                    <option value=10>10</option>
+                    <option value=11>11</option>
+                    <option value=12>12</option>
+                </select>
+                <span asp-validation-for="Movie.SeatsLeft" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Movies/AvailableMovies">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
