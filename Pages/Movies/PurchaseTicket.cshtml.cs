@@ -21,6 +21,8 @@ namespace WebbLab3
         [BindProperty]
         public Movie Movie { get; set; }
 
+        [BindProperty]
+        public int TicketAmount { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -46,10 +48,11 @@ namespace WebbLab3
                 return Page();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
-
             try
             {
+                var movie = _context.Movie.First(movie => movie.ID == Movie.ID);
+                if (movie.SeatsLeft - TicketAmount < 0) { throw new Exception("Not enough seats available"); }
+                _context.Database.ExecuteSqlCommand("UPDATE dbo.Movie SET SeatsLeft = SeatsLeft - " + TicketAmount + " WHERE ID = " + Movie.ID);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
