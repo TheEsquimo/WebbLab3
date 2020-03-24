@@ -15,10 +15,12 @@ namespace WebbLab3
         public string Title { get; set; }
 
         [Required]
+        [Display(Name = "Start Time")]
         public DateTime StartTime  { get; set; }
 
         [Required]
         [Range(0, 100)]
+        [Display(Name = "Seats Available")]
         public int SeatsLeft { get; set; }
 
         [Required]

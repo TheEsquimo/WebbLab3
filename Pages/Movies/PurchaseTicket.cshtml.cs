@@ -50,9 +50,7 @@ namespace WebbLab3
 
             try
             {
-                var movie = _context.Movie.First(movie => movie.ID == Movie.ID);
-                if (movie.SeatsLeft - TicketAmount < 0) { throw new Exception("Not enough seats available"); }
-                _context.Database.ExecuteSqlCommand("UPDATE dbo.Movie SET SeatsLeft = SeatsLeft - " + TicketAmount + " WHERE ID = " + Movie.ID);
+                RemoveSeatsByTicketAmount();
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -67,12 +65,19 @@ namespace WebbLab3
                 }
             }
 
-            return RedirectToPage("./AvailableMovies");
+            return RedirectToPage("./SuccesfullOrderDetails", new { id = Movie.ID, ticketsPurchased = TicketAmount });
         }
 
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.ID == id);
+        }
+
+        private void RemoveSeatsByTicketAmount()
+        {
+            var movie = _context.Movie.First(movie => movie.ID == Movie.ID);
+            if (movie.SeatsLeft - TicketAmount < 0) { throw new Exception("Not enough seats available"); }
+            _context.Database.ExecuteSqlCommand("UPDATE dbo.Movie SET SeatsLeft = SeatsLeft - " + TicketAmount + " WHERE ID = " + Movie.ID);
         }
     }
 }

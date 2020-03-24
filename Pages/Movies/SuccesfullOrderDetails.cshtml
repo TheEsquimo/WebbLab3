@@ -1,0 +1,42 @@
+﻿@page "{id}"
+@model WebbLab3.SuccesfullOrderDetailsModel
+
+@{
+    ViewData["Title"] = "SuccesfullOrderDetails";
+}
+
+<h1>Tickets Purchased Succesfully!</h1>
+
+<div>
+    <h4>Order Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.StartTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.StartTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Salon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Salon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TicketsPurchased)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TicketsPurchased)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./AvailableMovies">Back to List</a>
+</div>
