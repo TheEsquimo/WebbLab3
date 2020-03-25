@@ -11,12 +11,11 @@ namespace WebbLab3
         public WebbLab3Context (DbContextOptions<WebbLab3Context> options)
             : base(options)
         {
-            if (!Movie.Any()) { SeedDatabase(); }
         }
 
         public DbSet<WebbLab3.Movie> Movie { get; set; }
 
-        private void SeedDatabase()
+        public void SeedDatabase()
         {
             Movie[] seedMovies =
             {

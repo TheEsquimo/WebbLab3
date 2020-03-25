@@ -23,5 +23,10 @@ namespace WebbLab3
         {
             Movie = await _context.Movie.ToListAsync();
         }
+
+        public void OnPostSeedDatabase()
+        {
+            _context.SeedDatabase();
+        }
     }
 }
