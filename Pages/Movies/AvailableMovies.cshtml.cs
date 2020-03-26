@@ -29,9 +29,14 @@ namespace WebbLab3
             _context.SeedDatabase();
         }
 
-        public void OnPostSortBySeatsLeft()
+        public async Task OnPostSortBySeatsLeft()
         {
-            Movie = _context.Movie.OrderBy(movie => movie.SeatsLeft).ToList();
+            Movie = await _context.Movie.OrderByDescending(movie => movie.SeatsLeft).ToListAsync();
+        }
+
+        public async Task OnPostSortByStartTime()
+        {
+            Movie = await _context.Movie.OrderByDescending(movie => movie.StartTime).ToListAsync();
         }
     }
 }
