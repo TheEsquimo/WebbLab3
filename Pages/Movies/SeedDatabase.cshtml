@@ -19,6 +19,13 @@
     }
 </form>
 
+@if (Model.seedFailed)
+{
+    <form asp-page-handler="emptydatabase" method="post">
+        <button>Empty Database</button>
+    </form>
+}
+
 <div>
     <a asp-page="/Movies/AvailableMovies">Back to List</a>
 </div>

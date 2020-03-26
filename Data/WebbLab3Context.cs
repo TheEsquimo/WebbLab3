@@ -25,6 +25,20 @@ namespace WebbLab3
                     StartTime = new DateTime(2020, 03, 24, 18, 30, 0),
                     SeatsLeft = 50,
                     Salon = 1
+                },
+                new Movie
+                {
+                    Title = "Extreme Dude In Space",
+                    StartTime = new DateTime(2020, 03, 24, 20, 30, 0),
+                    SeatsLeft = 50,
+                    Salon = 1
+                },
+                new Movie
+                {
+                    Title = "Watch Out, I Have Gun!",
+                    StartTime = new DateTime(2020, 03, 24, 15, 0, 0),
+                    SeatsLeft = 100,
+                    Salon = 2
                 }
             };
 

@@ -28,5 +28,10 @@ namespace WebbLab3
         {
             _context.SeedDatabase();
         }
+
+        public void OnPostSortBySeatsLeft()
+        {
+            Movie = _context.Movie.OrderBy(movie => movie.SeatsLeft).ToList();
+        }
     }
 }

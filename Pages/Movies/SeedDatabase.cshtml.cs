@@ -31,5 +31,14 @@ namespace WebbLab3
                 seedFailed = true;
             }
         }
+
+        public void OnPostEmptyDatabase()
+        {
+            foreach(var movie in _context.Movie)
+            {
+                _context.Movie.Remove(movie);
+            }
+            _context.SaveChanges();
+        }
     }
 }
