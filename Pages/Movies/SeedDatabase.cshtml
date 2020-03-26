@@ -1,0 +1,24 @@
+﻿@page
+@model WebbLab3.SeedDatabaseModel
+
+@{
+    ViewData["Title"] = "SeedDatabase";
+}
+
+<h1>Seed Database</h1>
+
+<form asp-page-handler="seeddatabase" method="post">
+    <button>Seed Database</button>
+    @if (Model.seedSuccesfull)
+    {
+        <p>Sucesfully seeded database!</p>
+    }
+    else if (Model.seedFailed)
+    {
+        <p>Database already contains data...</p>
+    }
+</form>
+
+<div>
+    <a asp-page="/Movies/AvailableMovies">Back to List</a>
+</div>

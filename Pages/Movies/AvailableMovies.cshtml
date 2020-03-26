@@ -5,11 +5,8 @@
     ViewData["Title"] = "AvailableMovies";
 }
 
-<h1>AvailableMovies</h1>
-
-<form asp-page-handler="seeddatabase" method="post">
-    <button class="btn btn-default">Seed Database</button>
-</form>
+<h1>Movies</h1>
+<a asp-page="./SeedDatabase">Seed Database</a>
 
 <table class="table">
     <thead>
