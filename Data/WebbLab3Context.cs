@@ -19,13 +19,8 @@ namespace WebbLab3
         {
             Movie[] seedMovies =
             {
-                new Movie
-                {
-                    Title = "Coolboi: Unleashed",
-                    StartTime = new DateTime(2020, 03, 24, 18, 30, 0),
-                    SeatsLeft = 50,
-                    Salon = 1
-                }
+                GenerateMovie("Coolboi: Unleashed", new DateTime(2020, 03, 24, 18, 30, 0), 1),
+                GenerateMovie("BoiCool: Leashed", new DateTime(2020, 03, 24, 18, 30, 0), 2)
             };
 
             foreach (var movie in seedMovies)
@@ -34,6 +29,28 @@ namespace WebbLab3
             }
 
             this.SaveChanges();
+        }
+        Movie GenerateMovie(string title, DateTime startTime, int salon)
+        {
+            var newMovie = new Movie();
+            newMovie.Title = title;
+            newMovie.StartTime = startTime;
+            newMovie.Salon = salon;
+            if (salon == 1)
+            {
+                newMovie.SeatsLeft = 50;
+                return newMovie;
+            }
+            else if (salon == 2)
+            {
+                newMovie.SeatsLeft = 100;
+                return newMovie;
+            }
+            else
+            {
+                throw new Exception("Invalid salon");
+            }
+            
         }
     }
 }
