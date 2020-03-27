@@ -38,6 +38,7 @@ namespace WebbLab3
             newMovie.Title = title;
             newMovie.StartTime = startTime;
             newMovie.Salon = salon;
+            newMovie.StartTime = DateTime.Today + startTime.TimeOfDay;
             if (salon == 1)
             {
                 newMovie.SeatsLeft = 50;
@@ -52,7 +53,6 @@ namespace WebbLab3
             {
                 throw new Exception("Invalid salon");
             }
-            
         }
     }
 }
