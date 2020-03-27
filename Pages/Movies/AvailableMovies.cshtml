@@ -5,6 +5,14 @@
     ViewData["Title"] = "AvailableMovies";
 }
 
+<head>
+    <style>
+        .sold-out-movie {
+            color: #9f9493;
+        }
+    </style>
+</head>
+
 <h1>Movies</h1>
 <a asp-page="./SeedDatabase">Seed Database</a>
 
@@ -36,24 +44,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Movie) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatsLeft)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salon)
-            </td>
-            <td>
-                <a asp-page="./PurchaseTicket" asp-route-id="@item.ID">Purchase Tickets</a> |
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Movie)
+        {
+            <tr class="@(@item.SeatsLeft <= 0 ? "sold-out-movie" : "")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatsLeft)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salon)
+                </td>
+                <td>
+                    @if (item.SeatsLeft > 0)
+                    {
+                        <a asp-page="./PurchaseTicket" asp-route-id="@item.ID">Purchase Tickets</a>
+                    }
+                    else
+                    {
+                        <p>Sold out</p>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
