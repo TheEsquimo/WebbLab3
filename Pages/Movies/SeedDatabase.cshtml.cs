@@ -31,5 +31,16 @@ namespace WebbLab3
                 seedFailed = true;
             }
         }
+
+        public async Task<IActionResult> OnPostEmptyDatabase()
+        {
+            foreach(var movie in _context.Movie)
+            {
+                _context.Movie.Remove(movie);
+            }
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./AvailableMovies");
+        }
     }
 }

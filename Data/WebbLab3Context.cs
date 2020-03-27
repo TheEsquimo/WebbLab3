@@ -20,7 +20,9 @@ namespace WebbLab3
             Movie[] seedMovies =
             {
                 GenerateMovie("Coolboi: Unleashed", new DateTime(2020, 03, 24, 18, 30, 0), 1),
-                GenerateMovie("BoiCool: Leashed", new DateTime(2020, 03, 24, 18, 30, 0), 2)
+                GenerateMovie("BoiCool: Leashed", new DateTime(2020, 03, 24, 18, 30, 0), 2),
+                GenerateMovie("Extreme Dude In Space", new DateTime(2020, 03, 24, 20, 30, 0), 1),
+                GenerateMovie("Watch Out, I Have Gun!", new DateTime(2020, 03, 24, 15, 0, 0), 2)
             };
 
             foreach (var movie in seedMovies)
