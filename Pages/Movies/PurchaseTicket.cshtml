@@ -5,9 +5,9 @@
     ViewData["Title"] = "PurchaseTicket";
 }
 
-<h1>PurchaseTicket</h1>
+<h1>@Model.Movie.Title</h1>
+<p>Please look over the details and choose the amount of tickets you wish to purchase</p>
 
-<h4>Movie</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -45,7 +45,7 @@
                 <span asp-validation-for="Movie.SeatsLeft" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Complete Purchase" class="btn btn-primary" />
             </div>
         </form>
     </div>
