@@ -23,6 +23,7 @@ namespace WebbLab3
 
         [BindProperty]
         public int TicketAmount { get; set; }
+        public int ticketOptionAmount { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -36,6 +37,10 @@ namespace WebbLab3
             {
                 return NotFound();
             }
+
+            if (Movie.SeatsLeft >= 12) { ticketOptionAmount = 12; }
+            else { ticketOptionAmount = Movie.SeatsLeft; }
+
             return Page();
         }
 

@@ -5,9 +5,9 @@
     ViewData["Title"] = "PurchaseTicket";
 }
 
-<h1>PurchaseTicket</h1>
+<h1>@Model.Movie.Title</h1>
+<p>Please look over the details and choose the amount of tickets you wish to purchase</p>
 
-<h4>Movie</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,23 +37,15 @@
             <div class="form-group">
                 <label class="control-label">Ticket Amount</label>
                 <select asp-for="TicketAmount" class="form-control">
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                    <option value=6>6</option>
-                    <option value=7>7</option>
-                    <option value=8>8</option>
-                    <option value=9>9</option>
-                    <option value=10>10</option>
-                    <option value=11>11</option>
-                    <option value=12>12</option>
+                    @for(int i = 1; i <= Model.ticketOptionAmount; i++)
+                    {
+                        <option value=@i>@i</option>
+                    }
                 </select>
                 <span asp-validation-for="Movie.SeatsLeft" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Complete Purchase" class="btn btn-primary" />
             </div>
         </form>
     </div>

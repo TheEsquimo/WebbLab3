@@ -21,7 +21,7 @@ namespace WebbLab3
 
         public async Task OnGetAsync()
         {
-            Movie = await _context.Movie.ToListAsync();
+            Movie = await _context.Movie.OrderByDescending(movie => movie.SeatsLeft).ThenBy(movie => movie.Title).ToListAsync();
         }
 
         public void OnPostSeedDatabase()

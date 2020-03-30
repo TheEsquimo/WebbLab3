@@ -5,14 +5,32 @@
     ViewData["Title"] = "AvailableMovies";
 }
 
-<h1>Movies</h1>
-<a asp-page="./SeedDatabase">Seed Database</a>
+<head>
+    <style>
+        .sold-out-movie {
+            color: #9f9493;
+        }
+
+        .sort-buttons {
+            display: inline;
+        }
+
+        #seed-database-div {
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+
+<h1 class="display-4 text-center">Movies</h1>
+<div id="seed-database-div">
+    <a asp-page="./SeedDatabase">Seed Database</a>
+</div>
 
 <div>
-    <form asp-page-handler="sortbyseatsleft" method="post">
+    <form asp-page-handler="sortbyseatsleft" method="post" class="sort-buttons">
         <button>Sort by seats left</button>
     </form>
-    <form asp-page-handler="sortbystarttime" method="post">
+    <form asp-page-handler="sortbystarttime" method="post" class="sort-buttons">
         <button>Sort by start time</button>
     </form>
 </div>
@@ -36,24 +54,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Movie) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatsLeft)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salon)
-            </td>
-            <td>
-                <a asp-page="./PurchaseTicket" asp-route-id="@item.ID">Purchase Tickets</a> |
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Movie)
+        {
+            <tr class="@(@item.SeatsLeft <= 0 ? "sold-out-movie" : "")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatsLeft)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salon)
+                </td>
+                <td>
+                    @if (item.SeatsLeft > 0)
+                    {
+                        <a asp-page="./PurchaseTicket" asp-route-id="@item.ID">Purchase Tickets</a>
+                    }
+                    else
+                    {
+                        <p>Sold out</p>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
