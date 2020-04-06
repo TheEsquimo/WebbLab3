@@ -82,7 +82,7 @@ namespace WebbLab3
         {
             var movie = _context.Movie.First(movie => movie.ID == Movie.ID);
             if (movie.SeatsLeft - TicketAmount < 0) { throw new Exception("Not enough seats available"); }
-            _context.Database.ExecuteSqlCommand("UPDATE dbo.Movie SET SeatsLeft = SeatsLeft - " + TicketAmount + " WHERE ID = " + Movie.ID);
+            movie.SeatsLeft -= TicketAmount;
         }
     }
 }
